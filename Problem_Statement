@@ -1,0 +1,19 @@
+Automated Sludge Detection System for Water Tanks
+Background
+
+Water storage tanks gradually accumulate sludge, sediments, algae, and other impurities at the bottom due to prolonged usage. Excessive sludge contamination reduces water quality and may cause health hazards if not cleaned periodically.
+
+Currently, most domestic and industrial water tanks are cleaned manually at fixed intervals without knowing the actual sludge level. This often leads to unnecessary maintenance or delayed cleaning.
+
+Problem
+
+There is no economical automated system that continuously monitors sludge accumulation and alerts users when cleaning becomes necessary.
+
+Proposed Solution
+
+Develop a microcontroller-based monitoring system capable of:
+
+Monitoring sludge level continuously
+Detecting excessive sludge accumulation
+Displaying tank status
+Alerting users using LEDs and a buzzer
