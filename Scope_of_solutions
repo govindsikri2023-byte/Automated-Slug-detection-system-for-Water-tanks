@@ -1,0 +1,14 @@
+The proposed system aims to:
+
+Monitor sludge level continuously.
+Reduce manual inspection.
+Improve water quality.
+Alert users automatically.
+Provide a low-cost prototype suitable for domestic applications.
+Features
+Real-time monitoring
+LCD display
+Green LED (Clean)
+Red LED (High Sludge)
+Buzzer alert
+Expandable to IoT
