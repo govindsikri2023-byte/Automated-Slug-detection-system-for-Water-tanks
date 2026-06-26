@@ -1,0 +1,94 @@
+#include <LiquidCrystal.h>
+
+// LCD Pins
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+// Pins
+const int sensorPin = A0;
+const int greenLED = 6;
+const int redLED = 7;
+const int buzzer = 8;
+
+// Threshold Values
+const int CLEAN = 200;
+const int WARNING = 500;
+
+void setup()
+{
+  pinMode(greenLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+
+  lcd.begin(16, 2);
+
+  lcd.setCursor(0,0);
+  lcd.print("Automated");
+  lcd.setCursor(0,1);
+  lcd.print("Sludge Detect");
+
+  delay(2000);
+  lcd.clear();
+
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int sensorValue = analogRead(sensorPin);
+
+  Serial.print("Sensor Value = ");
+  Serial.println(sensorValue);
+
+  lcd.clear();
+
+  if(sensorValue < CLEAN)
+  {
+    // Clean Tank
+
+    digitalWrite(greenLED, HIGH);
+    digitalWrite(redLED, LOW);
+    digitalWrite(buzzer, LOW);
+
+    lcd.setCursor(0,0);
+    lcd.print("Tank Clean");
+
+    lcd.setCursor(0,1);
+    lcd.print("Sludge Low");
+  }
+
+  else if(sensorValue >= CLEAN && sensorValue < WARNING)
+  {
+    // Warning
+
+    digitalWrite(greenLED, LOW);
+    digitalWrite(redLED, LOW);
+    digitalWrite(buzzer, LOW);
+
+    lcd.setCursor(0,0);
+    lcd.print("Warning!");
+
+    lcd.setCursor(0,1);
+    lcd.print("Check Tank");
+  }
+
+  else
+  {
+    // High Sludge
+
+    digitalWrite(greenLED, LOW);
+    digitalWrite(redLED, HIGH);
+
+    digitalWrite(buzzer, HIGH);
+    delay(300);
+    digitalWrite(buzzer, LOW);
+    delay(300);
+
+    lcd.setCursor(0,0);
+    lcd.print("CLEAN TANK!");
+
+    lcd.setCursor(0,1);
+    lcd.print("Sludge High");
+  }
+
+  delay(500);
+}
